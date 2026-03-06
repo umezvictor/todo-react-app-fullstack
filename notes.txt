@@ -1,0 +1,33 @@
+redux toolkit for state management
+
+it has 3 concepts
+
+1. store, it's the global state. it is usually made up of multiple slices each responsible for specific
+   domains within the applyMiddleware. eg userSlice, products, todosSlice
+   the state is defined using an interface
+
+2. actions: used for telling redux what it should do to the state
+   actions have 2 important properties which are type and payload
+   the type is always a string. eg UPDATEUSER, INCREMENT, etc
+   the paylaod is the data you're sending along with the action
+3. reducers: they are responsible for taking an action and then, depending on the type of action will make an update
+   in the redux store. the action type will tell it what to do. optionally will use the payload
+   to do the specific action, to make the update to the store
+
+note: reducers will never directly make an update to the redux store
+we have a concept of immutability. i.e we're never allowed to directly mutate the state
+instead reducers make a copy of the state, and make changes to that copy of the State which will
+also have all the unchanged properties of the state, and the will
+completely replace the state as a whole with the copy that
+has the changes applied
+
+//after all the setup, when its time to use it
+//you need to use useSelector, get the state and then you can access anything you want
+//you can also use dispatch to dispatch actions const dispatch = useDispatch()
+//you can then call dispatch(name of your action) this is typically called within a function or event triggered, anyhow you want it
+//eg onClick={() => dispatch(increment())}
+//the name of the action is what you specified in the slice
+//eg here the action is setUser: setUser: (state, action: PayloadAction<User>)
+
+// see snipet from a Navbar page below
+

@@ -1,0 +1,27 @@
+plans page - by passing data to a child component(card)
+user registration
+display a success toast
+logout
+
+add refresh token feature
+role based access to pages
+pagination
+learn to pass data to a child component
+form validation - done
+redux toolkit state management - done
+use cookie to store login response - use http only for production
+
+caching
+unit test/integration test
+react unit test
+
+set cookie expiry 
+
+user tries to access a page
+system checks to see if user still in cookie
+user sees that token is expired
+the system checks the system for the earlier issued refresh token in user object
+system uses it to make a login request to api
+system resets the user cookie 
+
+
