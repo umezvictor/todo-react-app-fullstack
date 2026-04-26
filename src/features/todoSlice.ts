@@ -1,14 +1,20 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import type { TodoItem, TodoState } from "../types";
+import type {
+  AddTodoApiResponse,
+  AddTodoRequest,
+  TodoItem,
+  TodoState,
+} from "../types";
 import { APICore } from "../api/apiCore";
-import { useDataFetcher } from "../hooks/data-fetcher-hook";
+import { addTodoAsync } from "../api/todosApi";
 
 const initialState: TodoState = {
   value: {
     todo: null,
     todos: [],
     isLoading: true,
+    isAddTodoModalOpen: false,
     error: null,
     totalCount: 0,
   },
@@ -18,7 +24,11 @@ const initialState: TodoState = {
 const todoSlice = createSlice({
   name: "todo",
   initialState,
-  reducers: {},
+  reducers: {
+    setIsAddTodoModalOpen: (state, action: PayloadAction<boolean>) => {
+      state.value.isAddTodoModalOpen = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(
@@ -114,4 +124,13 @@ export const getTodoAsync = createAsyncThunk(
   },
 );
 
+export const createTodoAsync2 = createAsyncThunk<
+  AddTodoApiResponse,
+  AddTodoRequest
+>("todo/createTodo", async (payload) => {
+  return addTodoAsync(payload);
+});
+
+//export action
+export const { setIsAddTodoModalOpen } = todoSlice.actions;
 export default todoSlice.reducer;

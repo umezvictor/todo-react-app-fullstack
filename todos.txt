@@ -25,3 +25,66 @@ system uses it to make a login request to api
 system resets the user cookie 
 
 
+
+
+
+<table className="table table-hover mt-3">
+          <thead>
+            <tr>
+              {/* <th>Id</th> */}
+              <th>Todo Item</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mytodos &&
+              mytodos.length > 0 &&
+              mytodos.map((todo) => (
+                <tr key={todo.todoItemId}>
+                  {/* <td>{todo.todoItemId}</td> */}
+                  <td>{todo.title}</td>
+                  <td>
+                    <Link
+                      to={`/todos/${todo.todoItemId}`}
+                      className="btn btn-link text-primary"
+                    >
+                      <i className="bi bi-eye"></i>
+                    </Link>
+                    <button
+                      className="btn btn-link text-warning"
+                      // onClick={() => {
+                      //   handleEditTodo(todo);
+                      // }}
+                    >
+                      <i className="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      className="btn btn-link text-danger"
+                      // onClick={() => handleDeleteTodo(todo.todoItemId)}
+                    >
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          //onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={10}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          containerClassName="pagination justify-content-center mt-4"
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          activeClassName="active"
+          disabledClassName="disabled"
+        />
+
